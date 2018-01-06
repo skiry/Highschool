@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1486483167 source:d:\lucruri\!info\clasa a 12a\cerc3\main.cpp
+	<fstream>
+	<algorithm>
+	<iomanip>
+	<vector>
+	<math.h>
+

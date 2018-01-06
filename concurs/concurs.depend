@@ -1,0 +1,4 @@
+# depslib dependency file v1.0
+1390984152 source:d:\codeblocks projects#ionutz\concurs\main.cpp
+	<fstream>
+

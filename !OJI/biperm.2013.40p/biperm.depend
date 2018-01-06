@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1485769378 source:d:\12e\biperm\main.cpp
+	<fstream>
+	<algorithm>
+
+1485812760 source:e:\12e-olimp\!oji\biperm\main.cpp
+	<fstream>
+	<algorithm>
+

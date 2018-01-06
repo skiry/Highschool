@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1453893358 source:f:\programare dinamica\suma\main.cpp
+	<fstream>
+	<string.h>
+

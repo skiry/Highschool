@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1491652275 source:d:\lucruri\!info\clasa a 12a\tidy numbers\main.cpp
+	<fstream>
+	<string.h>
+

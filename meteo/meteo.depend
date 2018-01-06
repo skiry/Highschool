@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1391164450 source:d:\codeblocks projects#ionutz\meteo\main.cpp
+	<fstream>
+	<math.h>
+

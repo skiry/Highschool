@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1485632368 source:e:\12e-olimp\!oji\parc.2012\main.cpp
+	<fstream>
+	<stdlib.h>
+	<algorithm>
+

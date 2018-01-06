@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1462044133 source:d:\downloads\!info\strt spt3 oji15 11-12\google code jam 1b\a\b\main.cpp
+	<fstream>
+	<string.h>
+	<stdlib.h>
+

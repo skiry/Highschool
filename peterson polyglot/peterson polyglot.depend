@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1488313973 source:d:\lucruri\!info\clasa a 12a\peterson polyglot\main.cpp
+	<fstream>
+	<vector>
+	<queue>
+	<algorithm>
+

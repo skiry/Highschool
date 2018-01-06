@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1489409279 source:d:\lucruri\!info\clasa a 12a\instafollow2\main.cpp
+	<fstream>
+	<string.h>
+

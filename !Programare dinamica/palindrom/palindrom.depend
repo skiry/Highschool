@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1453792872 source:e:\11e-olimp\palindrom\main.cpp
+	<fstream>
+	<string.h>
+
+1453797522 source:f:\palindrom\main.cpp
+	<fstream>
+	<string.h>
+
+1454317104 source:f:\programare dinamica\palindrom\main.cpp
+	<fstream>
+	<string.h>
+

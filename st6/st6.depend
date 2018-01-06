@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1490441917 source:d:\lucruri\!info\clasa a 12a\st6\main.cpp
+	<fstream>
+	<vector>
+	<deque>
+	<algorithm>
+	<queue>
+

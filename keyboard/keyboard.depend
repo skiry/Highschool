@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1491502981 source:d:\lucruri\!info\clasa a 12a\keyboard\main.cpp
+	<fstream>
+	<string.h>
+

@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1447146495 source:e:\11e-olimp\30\main.cpp
+	<fstream>
+	<string.h>
+

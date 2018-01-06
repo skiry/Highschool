@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1488543011 source:d:\lucruri\!info\clasa a 12a\deque\main.cpp
+	<fstream>
+	<deque>
+

@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1488230783 source:d:\lucruri\!info\clasa a 12a\graf\main.cpp
+	<fstream>
+	<vector>
+	<queue>
+

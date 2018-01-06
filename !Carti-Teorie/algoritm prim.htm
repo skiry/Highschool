@@ -1,0 +1,1447 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1250">
+<meta name="ProgId" content="Word.Document">
+<meta name="Generator" content="Microsoft Word 10">
+<meta name="Originator" content="Microsoft Word 10">
+<link rel="File-List" href="http://infoscience.3x.ro/c++/prim_files/filelist.xml">
+<link rel="Edit-Time-Data" href="http://infoscience.3x.ro/c++/prim_files/editdata.mso">
+<!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style>
+<![endif]-->
+<title>Arbore partial de cost minim</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>adrian</o:Author>
+  <o:LastAuthor>adrian</o:LastAuthor>
+  <o:Revision>33</o:Revision>
+  <o:TotalTime>90</o:TotalTime>
+  <o:Created>2006-03-30T18:03:00Z</o:Created>
+  <o:LastSaved>2007-11-29T08:22:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>642</o:Words>
+  <o:Characters>3724</o:Characters>
+  <o:Company>home</o:Company>
+  <o:Lines>31</o:Lines>
+  <o:Paragraphs>8</o:Paragraphs>
+  <o:CharactersWithSpaces>4358</o:CharactersWithSpaces>
+  <o:Version>10.2625</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:SpellingState>Clean</w:SpellingState>
+  <w:GrammarState>Clean</w:GrammarState>
+  <w:HyphenationZone>21</w:HyphenationZone>
+  <w:PunctuationKerning/>
+  <w:Compatibility>
+   <w:BreakWrappedTables/>
+   <w:SnapToGridInCell/>
+   <w:WrapTextWithPunct/>
+   <w:UseAsianBreakRules/>
+   <w:DontGrowAutofit/>
+  </w:Compatibility>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+ </w:WordDocument>
+</xml><![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Century Gothic";
+	panose-1:2 11 5 2 2 2 2 2 2 4;
+	mso-font-charset:238;
+	mso-generic-font-family:swiss;
+	mso-font-pitch:variable;
+	mso-font-signature:647 0 0 0 159 0;}
+@font-face
+	{font-family:Marlett;
+	panose-1:0 0 0 0 0 0 0 0 0 0;
+	mso-font-charset:2;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:0 268435456 0 0 -2147483648 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+@page Section1
+	{size:595.3pt 841.9pt;
+	margin:70.85pt 70.85pt 70.85pt 70.85pt;
+	mso-header-margin:35.4pt;
+	mso-footer-margin:35.4pt;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ @list l0
+	{mso-list-id:250092183;
+	mso-list-type:hybrid;
+	mso-list-template-ids:2024985728 68681729 68681731 68681733 68681729 68681731 68681733 68681729 68681731 68681733;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Symbol;}
+@list l0:level2
+	{mso-level-tab-stop:72.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level3
+	{mso-level-tab-stop:108.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level4
+	{mso-level-tab-stop:144.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level5
+	{mso-level-tab-stop:180.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level6
+	{mso-level-tab-stop:216.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level7
+	{mso-level-tab-stop:252.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level8
+	{mso-level-tab-stop:288.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level9
+	{mso-level-tab-stop:324.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l1
+	{mso-list-id:509879851;
+	mso-list-template-ids:-406136240;}
+@list l1:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l2
+	{mso-list-id:768240251;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1867420360 68681729 68681731 68681733 68681729 68681731 68681733 68681729 68681731 68681733;}
+@list l2:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Symbol;}
+@list l2:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:72.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:"Courier New";}
+@list l2:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:108.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Marlett;}
+@list l2:level4
+	{mso-level-tab-stop:144.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l2:level5
+	{mso-level-tab-stop:180.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l2:level6
+	{mso-level-tab-stop:216.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l2:level7
+	{mso-level-tab-stop:252.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l2:level8
+	{mso-level-tab-stop:288.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l2:level9
+	{mso-level-tab-stop:324.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l3
+	{mso-list-id:785006760;
+	mso-list-type:hybrid;
+	mso-list-template-ids:245553848 -389481960 68681753 68681755 68681743 68681753 68681755 68681743 68681753 68681755;}
+@list l3:level1
+	{mso-level-start-at:3;
+	mso-level-text:%1;
+	mso-level-tab-stop:5.0cm;
+	mso-level-number-position:left;
+	margin-left:5.0cm;
+	text-indent:-71.25pt;}
+@list l3:level2
+	{mso-level-tab-stop:72.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l3:level3
+	{mso-level-tab-stop:108.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l3:level4
+	{mso-level-tab-stop:144.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l3:level5
+	{mso-level-tab-stop:180.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l3:level6
+	{mso-level-tab-stop:216.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l3:level7
+	{mso-level-tab-stop:252.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l3:level8
+	{mso-level-tab-stop:288.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l3:level9
+	{mso-level-tab-stop:324.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l4
+	{mso-list-id:855853192;
+	mso-list-template-ids:-1665911714;}
+@list l4:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l5
+	{mso-list-id:1268467252;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1638782536 -160538882 68681753 68681755 68681743 68681753 68681755 68681743 68681753 68681755;}
+@list l5:level1
+	{mso-level-start-at:3;
+	mso-level-text:%1;
+	mso-level-tab-stop:88.5pt;
+	mso-level-number-position:left;
+	margin-left:88.5pt;
+	text-indent:-18.0pt;}
+@list l5:level2
+	{mso-level-tab-stop:72.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l5:level3
+	{mso-level-tab-stop:108.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l5:level4
+	{mso-level-tab-stop:144.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l5:level5
+	{mso-level-tab-stop:180.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l5:level6
+	{mso-level-tab-stop:216.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l5:level7
+	{mso-level-tab-stop:252.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l5:level8
+	{mso-level-tab-stop:288.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l5:level9
+	{mso-level-tab-stop:324.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l6
+	{mso-list-id:1682202194;
+	mso-list-template-ids:2077550420;}
+@list l6:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l6:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:72.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l7
+	{mso-list-id:1973249765;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1936420590 23766846 68681753 68681755 68681743 68681753 68681755 68681743 68681753 68681755;}
+@list l7:level1
+	{mso-level-start-at:3;
+	mso-level-text:%1;
+	mso-level-tab-stop:88.5pt;
+	mso-level-number-position:left;
+	margin-left:88.5pt;
+	text-indent:-18.0pt;}
+@list l7:level2
+	{mso-level-tab-stop:72.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l7:level3
+	{mso-level-tab-stop:108.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l7:level4
+	{mso-level-tab-stop:144.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l7:level5
+	{mso-level-tab-stop:180.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l7:level6
+	{mso-level-tab-stop:216.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l7:level7
+	{mso-level-tab-stop:252.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l7:level8
+	{mso-level-tab-stop:288.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l7:level9
+	{mso-level-tab-stop:324.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:"Tabel Normal";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+	mso-para-margin:0cm;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";}
+table.TableNormal
+	{mso-style-name:"Table Normal";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+	mso-para-margin:0cm;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";}
+</style>
+<![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" LatentStyleCount="156">  </w:LatentStyles>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="5122">
+  <o:colormenu v:ext="edit" strokecolor="fuchsia"/>
+ </o:shapedefaults></xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body style="" lang="RO">
+ <center><iframe id="a7ef5b13" name="a7ef5b13" src="algoritm%20prim_files/afr.htm" framespacing="0" allowtransparency="true" frameborder="no" height="60" scrolling="no" width="468" align="middle">&lt;a
+ href='http://ads.3xmedia.ro/www/delivery/ck.php?n=aee207a1' 
+target='_blank'&gt;&lt;img 
+src='http://ads.3xmedia.ro/www/delivery/avw.php?zoneid=20&amp;amp;n=aee207a1'
+ border='0' alt='' /&gt;&lt;/a&gt;</iframe></center>
+
+
+
+<div class="Section1">
+
+<p class="MsoNormal" style="text-align:center" align="center"><b style="mso-bidi-font-weight:
+normal"><span style="color:red;mso-ansi-language:FR" lang="FR">Arbore partial de
+cost minim<o:p></o:p></span></b></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:FR" lang="FR"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="font-family:&quot;Century Gothic&quot;;
+mso-ansi-language:FR" lang="FR">Fie urmatoarea problema concreta: <o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:FR" lang="FR"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="font-family:&quot;Century Gothic&quot;;
+mso-ansi-language:FR" lang="FR">Se dau n orase precum si costul conectarii anumitor
+perechi de orase. Se cere sa se aleaga o parte din muchii astfel incat se
+asigure existenta unui lant intre oricare doua orase si costul total sa fie
+minim.<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:FR" lang="FR"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><b style="mso-bidi-font-weight:normal"><span style="font-family:&quot;Century Gothic&quot;;mso-ansi-language:IT" lang="IT">G=(V, E) </span></b><span style="font-family:&quot;Century Gothic&quot;;mso-ansi-language:IT" lang="IT">un graf
+neorientat, unde V are n elemente (n noduri) si E are m elemente (m<span style="mso-spacerun:yes">&nbsp; </span>muchii).<span style="mso-spacerun:yes">&nbsp;&nbsp;
+</span>Se cunosc costurile muchiilor. Prin eliminarea unor muchii se obtine un
+graf partial. Daca acesta este arbore se va numi arbore partial.<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="font-family:&quot;Century Gothic&quot;;
+mso-ansi-language:IT" lang="IT"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="font-family:&quot;Century Gothic&quot;;
+mso-ansi-language:IT" lang="IT">Costul unui arbore este egal cu suma costurilor muchiilor
+sale. Arborele partial de cost minim este un arbore pentru care suma este
+minima.<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="font-family:&quot;Century Gothic&quot;;
+mso-ansi-language:IT" lang="IT"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="font-family:&quot;Century Gothic&quot;;
+mso-ansi-language:FR" lang="FR">Problema. Fie un graf conex pentru care se cunosc
+costurile muchiilor. Sa se determine arborele de cost minim asociat (costul
+arborelui si vectorul de tati).<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="font-family:&quot;Century Gothic&quot;;
+mso-ansi-language:FR" lang="FR"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><!--[if gte vml 1]><v:group id="_x0000_s1042" style='position:absolute;
+ margin-left:45pt;margin-top:3.1pt;width:153pt;height:135pt;z-index:1'
+ coordorigin="1057,7897" coordsize="3060,2700">
+ <v:rect id="_x0000_s1029" style='position:absolute;left:2137;top:7897;width:360;
+  height:360'>
+  <v:textbox>
+   <![if !mso]>
+   <table cellpadding=0 cellspacing=0 width="100%">
+    <tr>
+     <td><![endif]>
+     <div>
+     <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-ansi-language:
+     EN-US'>1<o:p></o:p></span></p>
+     </div>
+     <![if !mso]></td>
+    </tr>
+   </table>
+   <![endif]></v:textbox>
+ </v:rect><v:rect id="_x0000_s1030" style='position:absolute;left:3757;top:8797;
+  width:360;height:360'>
+  <v:textbox>
+   <![if !mso]>
+   <table cellpadding=0 cellspacing=0 width="100%">
+    <tr>
+     <td><![endif]>
+     <div>
+     <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-ansi-language:
+     EN-US'>2<o:p></o:p></span></p>
+     </div>
+     <![if !mso]></td>
+    </tr>
+   </table>
+   <![endif]></v:textbox>
+ </v:rect><v:rect id="_x0000_s1031" style='position:absolute;left:1057;top:8617;
+  width:360;height:360'>
+  <v:textbox>
+   <![if !mso]>
+   <table cellpadding=0 cellspacing=0 width="100%">
+    <tr>
+     <td><![endif]>
+     <div>
+     <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-ansi-language:
+     EN-US'>5<o:p></o:p></span></p>
+     </div>
+     <![if !mso]></td>
+    </tr>
+   </table>
+   <![endif]></v:textbox>
+ </v:rect><v:rect id="_x0000_s1032" style='position:absolute;left:2137;top:10237;
+  width:360;height:360'>
+  <v:textbox>
+   <![if !mso]>
+   <table cellpadding=0 cellspacing=0 width="100%">
+    <tr>
+     <td><![endif]>
+     <div>
+     <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-ansi-language:
+     EN-US'>4<o:p></o:p></span></p>
+     </div>
+     <![if !mso]></td>
+    </tr>
+   </table>
+   <![endif]></v:textbox>
+ </v:rect><v:rect id="_x0000_s1033" style='position:absolute;left:3577;top:10237;
+  width:360;height:360'>
+  <v:textbox>
+   <![if !mso]>
+   <table cellpadding=0 cellspacing=0 width="100%">
+    <tr>
+     <td><![endif]>
+     <div>
+     <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-ansi-language:
+     EN-US'>3<o:p></o:p></span></p>
+     </div>
+     <![if !mso]></td>
+    </tr>
+   </table>
+   <![endif]></v:textbox>
+ </v:rect><v:line id="_x0000_s1034" style='position:absolute;flip:y' from="1237,8077"
+  to="2137,8617"/>
+ <v:line id="_x0000_s1035" style='position:absolute' from="2497,8077" to="3937,8797"/>
+ <v:line id="_x0000_s1036" style='position:absolute' from="1417,8797" to="3757,8977"/>
+ <v:line id="_x0000_s1037" style='position:absolute' from="1237,8977" to="2137,10417"/>
+ <v:line id="_x0000_s1038" style='position:absolute' from="2497,10417" to="3577,10417"/>
+ <v:line id="_x0000_s1039" style='position:absolute;flip:x' from="3757,9157"
+  to="3937,10237"/>
+ <v:line id="_x0000_s1040" style='position:absolute' from="2317,8257" to="2317,10237"/>
+ <v:line id="_x0000_s1041" style='position:absolute;flip:x' from="2497,9157"
+  to="3757,10237"/>
+</v:group><![endif]--><!--[if !vml]--><span style="mso-ignore:vglayout;position:
+absolute;z-index:1;margin-left:59px;margin-top:3px;width:210px;height:186px"><img src="algoritm%20prim_files/image001.gif" v:shapes="_x0000_s1042 _x0000_s1029 _x0000_s1030 _x0000_s1031 _x0000_s1032 _x0000_s1033 _x0000_s1034 _x0000_s1035 _x0000_s1036 _x0000_s1037 _x0000_s1038 _x0000_s1039 _x0000_s1040 _x0000_s1041" height="186" width="210"></span><!--[endif]--><span style="font-family:&quot;Century Gothic&quot;;mso-ansi-language:FR" lang="FR"><span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ </span><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-left:5.0cm;text-indent:-71.25pt;mso-list:l3 level1 lfo2;
+tab-stops:list 5.0cm"><!--[if !supportLists]--><span style="font-family:
+&quot;Century Gothic&quot;;mso-fareast-font-family:&quot;Century Gothic&quot;;mso-bidi-font-family:
+&quot;Century Gothic&quot;;mso-ansi-language:FR" lang="FR"><span style="mso-list:Ignore">3<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><!--[endif]--><span style="font-family:&quot;Century Gothic&quot;;
+mso-ansi-language:FR" lang="FR">2<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="font-family:&quot;Century Gothic&quot;;
+mso-ansi-language:FR" lang="FR"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal" style="margin-left:141.6pt"><span style="font-family:
+&quot;Century Gothic&quot;;mso-ansi-language:FR" lang="FR">5<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:FR" lang="FR"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:FR" lang="FR"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:FR" lang="FR"><span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ </span><span style="mso-spacerun:yes">&nbsp;&nbsp; </span>4<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="mso-spacerun:yes">&nbsp; </span>2<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="mso-spacerun:yes">&nbsp; </span>1<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span>7<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:FR" lang="FR"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:FR" lang="FR"><span style="mso-tab-count:4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ </span><span style="mso-spacerun:yes">&nbsp; </span>4<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:FR" lang="FR"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:FR" lang="FR">Vom utiliza 2
+vectori&nbsp;:<o:p></o:p></span></p>
+
+<ul style="margin-top:0cm" type="disc">
+ <li class="MsoNormal" style="mso-list:l0 level1 lfo5;tab-stops:list 36.0pt"><span style="mso-ansi-language:FR" lang="FR">Vectorul s, pentru care s[i]=0 daca
+     nodul i a fost adaugat la arbore sau s[i]=k daca i nu a fost adaugat la
+     arbore si exista muchie intre i si k deja adaugat si are valoare minima <o:p></o:p></span></li>
+ <li class="MsoNormal" style="mso-list:l0 level1 lfo5;tab-stops:list 36.0pt"><span style="mso-ansi-language:EN-US" lang="EN-US">Vectorul t, vector de tati<o:p></o:p></span></li>
+</ul>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">Algoritmul
+consta in urmatoarele:<o:p></o:p></span></p>
+
+<ul style="margin-top:0cm" type="disc">
+ <li class="MsoNormal" style="mso-list:l2 level1 lfo8;tab-stops:list 36.0pt"><span style="mso-ansi-language:FR" lang="FR">Se citeste nodul de pornire , v<o:p></o:p></span></li>
+ <li class="MsoNormal" style="mso-list:l2 level1 lfo8;tab-stops:list 36.0pt"><span style="mso-ansi-language:EN-US" lang="EN-US">Se incarca in s valoarea v<o:p></o:p></span></li>
+ <li class="MsoNormal" style="mso-list:l2 level1 lfo8;tab-stops:list 36.0pt"><span style="mso-ansi-language:PT-BR" lang="PT-BR">S[v]=0 (arborele contine nodul
+     v)<o:p></o:p></span></li>
+</ul>
+
+<p class="MsoNormal"><span style="mso-ansi-language:PT-BR" lang="PT-BR">Spre
+exemplu daca v=1 se obtine:<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">S={0 1 1 1
+1}<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">T={0 0 0 0
+0} <o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<ul style="margin-top:0cm" type="disc">
+ <li class="MsoNormal" style="mso-list:l2 level1 lfo8;tab-stops:list 36.0pt"><span style="mso-ansi-language:FR" lang="FR">De n -1 ori&nbsp;:<o:p></o:p></span></li>
+ <ul style="margin-top:0cm" type="circle">
+  <li class="MsoNormal" style="mso-list:l2 level2 lfo8;tab-stops:list 72.0pt"><span style="mso-ansi-language:FR" lang="FR"><span style="mso-spacerun:yes">&nbsp;</span>se determina cel mai apropiat <i style="mso-bidi-font-style:normal">nod</i> (neadaugat inca la arbore) de
+      arborele partial construit <span style="mso-spacerun:yes">&nbsp;</span>si
+      muchia de cost minim <i style="mso-bidi-font-style:normal">min</i><o:p></o:p></span></li>
+  <li class="MsoNormal" style="mso-list:l2 level2 lfo8;tab-stops:list 72.0pt"><span style="mso-ansi-language:FR" lang="FR">Se marcheaza pentru nod:
+      t[nod]=s[nod]<o:p></o:p></span></li>
+  <li class="MsoNormal" style="mso-list:l2 level2 lfo8;tab-stops:list 72.0pt"><span style="mso-ansi-language:FR" lang="FR">Se adauga min la cost&nbsp;:<span style="mso-spacerun:yes">&nbsp; </span>cost=cost+min<o:p></o:p></span></li>
+  <li class="MsoNormal" style="mso-list:l2 level2 lfo8;tab-stops:list 72.0pt"><span style="mso-ansi-language:FR" lang="FR">Se marcheaza nod ca fiind adaugat la
+      arbore: s[nod]=0<o:p></o:p></span></li>
+  <li class="MsoNormal" style="mso-list:l2 level2 lfo8;tab-stops:list 72.0pt"><span style="mso-ansi-language:FR" lang="FR">Se actualizeaza datele&nbsp;:<o:p></o:p></span></li>
+ </ul>
+</ul>
+
+<p class="MsoNormal" style="margin-left:108.0pt;text-indent:-18.0pt;mso-list:
+l2 level3 lfo8;tab-stops:list 108.0pt"><!--[if !supportLists]--><span style="font-family:Marlett;mso-fareast-font-family:Marlett;mso-bidi-font-family:
+Marlett;mso-ansi-language:IT" lang="IT"><span style="mso-list:Ignore">§<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><!--[endif]--><span style="mso-ansi-language:IT" lang="IT">Daca
+distanta de la i la arbore (a[i][s[i]])<span style="mso-spacerun:yes">&nbsp;
+</span>este mai mare decat distanta de la i la nodul nod tocmai adaugat la
+arbore (a[i][nod]) se modifica potentialul ascendent pentru i: s[i]=nod<o:p></o:p></span></p>
+
+<p class="MsoNormal"><b style="mso-bidi-font-weight:normal"><span style="mso-ansi-language:FR" lang="FR">Pas1<o:p></o:p></span></b></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:FR" lang="FR">Nod=2<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">Muchia de
+cost minim este 1-2<span style="mso-spacerun:yes">&nbsp; </span>min=2, cost=2<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:FR" lang="FR">Se obtine&nbsp;:<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">S={0 <b style="mso-bidi-font-weight:normal"><span style="color:red">0</span></b> <b style="mso-bidi-font-weight:normal"><span style="color:blue">2 2</span></b> 1}<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">T={0 <b style="mso-bidi-font-weight:normal"><span style="color:red">1</span></b> 0 0 0}
+<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="font-family:&quot;Century Gothic&quot;;
+mso-ansi-language:FR" lang="FR"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><!--[if gte vml 1]><v:group id="_x0000_s1043" style='position:absolute;
+ margin-left:45pt;margin-top:3.1pt;width:153pt;height:135pt;z-index:2'
+ coordorigin="1057,7897" coordsize="3060,2700">
+ <v:rect id="_x0000_s1044" style='position:absolute;left:2137;top:7897;width:360;
+  height:360' fillcolor="yellow">
+  <v:textbox>
+   <![if !mso]>
+   <table cellpadding=0 cellspacing=0 width="100%">
+    <tr>
+     <td><![endif]>
+     <div>
+     <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;mso-ansi-language:
+     EN-US'>1<o:p></o:p></span></p>
+     </div>
+     <![if !mso]></td>
+    </tr>
+   </table>
+   <![endif]></v:textbox>
+ </v:rect><v:rect id="_x0000_s1045" style='position:absolute;left:3757;top:8797;
+  width:360;height:360' fillcolor="#f9c">
+  <v:textbox>
+   <![if !mso]>
+   <table cellpadding=0 cellspacing=0 width="100%">
+    <tr>
+     <td><![endif]>
+     <div>
+     <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-ansi-language:
+     EN-US'>2<o:p></o:p></span></p>
+     </div>
+     <![if !mso]></td>
+    </tr>
+   </table>
+   <![endif]></v:textbox>
+ </v:rect><v:rect id="_x0000_s1046" style='position:absolute;left:1057;top:8617;
+  width:360;height:360'>
+  <v:textbox>
+   <![if !mso]>
+   <table cellpadding=0 cellspacing=0 width="100%">
+    <tr>
+     <td><![endif]>
+     <div>
+     <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-ansi-language:
+     EN-US'>5<o:p></o:p></span></p>
+     </div>
+     <![if !mso]></td>
+    </tr>
+   </table>
+   <![endif]></v:textbox>
+ </v:rect><v:rect id="_x0000_s1047" style='position:absolute;left:2137;top:10237;
+  width:360;height:360'>
+  <v:textbox>
+   <![if !mso]>
+   <table cellpadding=0 cellspacing=0 width="100%">
+    <tr>
+     <td><![endif]>
+     <div>
+     <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-ansi-language:
+     EN-US'>4<o:p></o:p></span></p>
+     </div>
+     <![if !mso]></td>
+    </tr>
+   </table>
+   <![endif]></v:textbox>
+ </v:rect><v:rect id="_x0000_s1048" style='position:absolute;left:3577;top:10237;
+  width:360;height:360'>
+  <v:textbox>
+   <![if !mso]>
+   <table cellpadding=0 cellspacing=0 width="100%">
+    <tr>
+     <td><![endif]>
+     <div>
+     <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;mso-ansi-language:
+     EN-US'>3<o:p></o:p></span></p>
+     </div>
+     <![if !mso]></td>
+    </tr>
+   </table>
+   <![endif]></v:textbox>
+ </v:rect><v:line id="_x0000_s1049" style='position:absolute;flip:y' from="1237,8077"
+  to="2137,8617"/>
+ <v:line id="_x0000_s1050" style='position:absolute' from="2497,8077" to="3937,8797"
+  strokecolor="fuchsia" strokeweight="2.25pt"/>
+ <v:line id="_x0000_s1051" style='position:absolute' from="1417,8797" to="3757,8977"/>
+ <v:line id="_x0000_s1052" style='position:absolute' from="1237,8977" to="2137,10417"/>
+ <v:line id="_x0000_s1053" style='position:absolute' from="2497,10417" to="3577,10417"/>
+ <v:line id="_x0000_s1054" style='position:absolute;flip:x' from="3757,9157"
+  to="3937,10237"/>
+ <v:line id="_x0000_s1055" style='position:absolute' from="2317,8257" to="2317,10237"/>
+ <v:line id="_x0000_s1056" style='position:absolute;flip:x' from="2497,9157"
+  to="3757,10237"/>
+</v:group><![endif]--><!--[if !vml]--><span style="mso-ignore:vglayout;position:
+absolute;z-index:2;margin-left:59px;margin-top:3px;width:210px;height:186px"><img src="algoritm%20prim_files/image002.gif" v:shapes="_x0000_s1043 _x0000_s1044 _x0000_s1045 _x0000_s1046 _x0000_s1047 _x0000_s1048 _x0000_s1049 _x0000_s1050 _x0000_s1051 _x0000_s1052 _x0000_s1053 _x0000_s1054 _x0000_s1055 _x0000_s1056" height="186" width="210"></span><!--[endif]--><span style="font-family:&quot;Century Gothic&quot;;mso-ansi-language:FR" lang="FR"><span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ </span><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-left:88.5pt;text-indent:-18.0pt;mso-list:l5 level1 lfo11;
+tab-stops:list 88.5pt"><!--[if !supportLists]--><span style="font-family:
+&quot;Century Gothic&quot;;mso-fareast-font-family:&quot;Century Gothic&quot;;mso-bidi-font-family:
+&quot;Century Gothic&quot;;mso-ansi-language:FR" lang="FR"><span style="mso-list:Ignore">3<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><!--[endif]--><span style="font-family:&quot;Century Gothic&quot;;
+mso-ansi-language:FR" lang="FR"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>2<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="font-family:&quot;Century Gothic&quot;;
+mso-ansi-language:FR" lang="FR"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal" style="margin-left:141.6pt"><span style="font-family:
+&quot;Century Gothic&quot;;mso-ansi-language:FR" lang="FR">5<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:FR" lang="FR"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:FR" lang="FR"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:FR" lang="FR"><span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ </span><span style="mso-spacerun:yes">&nbsp;&nbsp; </span>4<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="mso-spacerun:yes">&nbsp; </span>2<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="mso-spacerun:yes">&nbsp; </span>1<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span>7<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:FR" lang="FR"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:FR" lang="FR"><span style="mso-tab-count:4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ </span><span style="mso-spacerun:yes">&nbsp; </span>4<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:FR" lang="FR"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:FR" lang="FR"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><b style="mso-bidi-font-weight:normal"><span style="mso-ansi-language:FR" lang="FR">Pas2<o:p></o:p></span></b></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">Nod=4<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">Muchia de
+cost minim este (2,4)<span style="mso-spacerun:yes">&nbsp; </span>min=1, cost=3<b style="mso-bidi-font-weight:normal"><o:p></o:p></b></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">S={0 0 <b style="mso-bidi-font-weight:normal"><span style="color:blue">4</span></b> <b style="mso-bidi-font-weight:normal"><span style="color:red">0 </span></b>1}<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">T={0 1 0 <b style="mso-bidi-font-weight:normal"><span style="color:red">2</span></b> 0} <o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="font-family:&quot;Century Gothic&quot;;
+mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><!--[if gte vml 1]><v:group id="_x0000_s1057" style='position:absolute;
+ margin-left:45pt;margin-top:1.55pt;width:153pt;height:135pt;z-index:3'
+ coordorigin="1057,7897" coordsize="3060,2700">
+ <v:rect id="_x0000_s1058" style='position:absolute;left:2137;top:7897;width:360;
+  height:360' fillcolor="yellow">
+  <v:textbox>
+   <![if !mso]>
+   <table cellpadding=0 cellspacing=0 width="100%">
+    <tr>
+     <td><![endif]>
+     <div>
+     <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;mso-ansi-language:
+     EN-US'>1<o:p></o:p></span></p>
+     </div>
+     <![if !mso]></td>
+    </tr>
+   </table>
+   <![endif]></v:textbox>
+ </v:rect><v:rect id="_x0000_s1059" style='position:absolute;left:3757;top:8797;
+  width:360;height:360' fillcolor="yellow">
+  <v:textbox>
+   <![if !mso]>
+   <table cellpadding=0 cellspacing=0 width="100%">
+    <tr>
+     <td><![endif]>
+     <div>
+     <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;mso-ansi-language:
+     EN-US'>2<o:p></o:p></span></p>
+     </div>
+     <![if !mso]></td>
+    </tr>
+   </table>
+   <![endif]></v:textbox>
+ </v:rect><v:rect id="_x0000_s1060" style='position:absolute;left:1057;top:8617;
+  width:360;height:360'>
+  <v:textbox>
+   <![if !mso]>
+   <table cellpadding=0 cellspacing=0 width="100%">
+    <tr>
+     <td><![endif]>
+     <div>
+     <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-ansi-language:
+     EN-US'>5<o:p></o:p></span></p>
+     </div>
+     <![if !mso]></td>
+    </tr>
+   </table>
+   <![endif]></v:textbox>
+ </v:rect><v:rect id="_x0000_s1061" style='position:absolute;left:2137;top:10237;
+  width:360;height:360' fillcolor="#f9c">
+  <v:textbox>
+   <![if !mso]>
+   <table cellpadding=0 cellspacing=0 width="100%">
+    <tr>
+     <td><![endif]>
+     <div>
+     <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-ansi-language:
+     EN-US'>4<o:p></o:p></span></p>
+     </div>
+     <![if !mso]></td>
+    </tr>
+   </table>
+   <![endif]></v:textbox>
+ </v:rect><v:rect id="_x0000_s1062" style='position:absolute;left:3577;top:10237;
+  width:360;height:360'>
+  <v:textbox>
+   <![if !mso]>
+   <table cellpadding=0 cellspacing=0 width="100%">
+    <tr>
+     <td><![endif]>
+     <div>
+     <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;mso-ansi-language:
+     EN-US'>3<o:p></o:p></span></p>
+     </div>
+     <![if !mso]></td>
+    </tr>
+   </table>
+   <![endif]></v:textbox>
+ </v:rect><v:line id="_x0000_s1063" style='position:absolute;flip:y' from="1237,8077"
+  to="2137,8617"/>
+ <v:line id="_x0000_s1064" style='position:absolute' from="2497,8077" to="3937,8797"
+  strokecolor="fuchsia" strokeweight="2.25pt"/>
+ <v:line id="_x0000_s1065" style='position:absolute' from="1417,8797" to="3757,8977"/>
+ <v:line id="_x0000_s1066" style='position:absolute' from="1237,8977" to="2137,10417"/>
+ <v:line id="_x0000_s1067" style='position:absolute' from="2497,10417" to="3577,10417"/>
+ <v:line id="_x0000_s1068" style='position:absolute;flip:x' from="3757,9157"
+  to="3937,10237"/>
+ <v:line id="_x0000_s1069" style='position:absolute' from="2317,8257" to="2317,10237"/>
+ <v:line id="_x0000_s1070" style='position:absolute;flip:x' from="2497,9157"
+  to="3757,10237" strokecolor="fuchsia" strokeweight="2.25pt"/>
+</v:group><![endif]--><!--[if !vml]--><span style="mso-ignore:vglayout;position:
+absolute;z-index:3;margin-left:59px;margin-top:1px;width:210px;height:186px"><img src="algoritm%20prim_files/image003.gif" v:shapes="_x0000_s1057 _x0000_s1058 _x0000_s1059 _x0000_s1060 _x0000_s1061 _x0000_s1062 _x0000_s1063 _x0000_s1064 _x0000_s1065 _x0000_s1066 _x0000_s1067 _x0000_s1068 _x0000_s1069 _x0000_s1070" height="186" width="210"></span><!--[endif]--><span style="font-family:&quot;Century Gothic&quot;;mso-ansi-language:EN-US" lang="EN-US"><span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ </span><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-left:70.5pt"><span style="font-family:&quot;Century Gothic&quot;;mso-ansi-language:EN-US" lang="EN-US">3<span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ </span>2<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="font-family:&quot;Century Gothic&quot;;
+mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal" style="margin-left:141.6pt"><span style="font-family:&quot;Century Gothic&quot;;mso-ansi-language:EN-US" lang="EN-US">5<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ </span><span style="mso-spacerun:yes">&nbsp;&nbsp; </span>4<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="mso-spacerun:yes">&nbsp; </span>2<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="mso-spacerun:yes">&nbsp; </span>1<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span>7<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><span style="mso-tab-count:4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ </span><span style="mso-spacerun:yes">&nbsp; </span>4<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><b style="mso-bidi-font-weight:normal"><span style="mso-ansi-language:EN-US" lang="EN-US">Pas 3<o:p></o:p></span></b></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">Nod=5<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">Muchia de
+cost minim (1,5) min=3 cost=6<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">S={0,0,4,0,<b style="mso-bidi-font-weight:normal"><span style="color:red">0</span></b>}<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">T={0 1 0 2 <b style="mso-bidi-font-weight:normal"><span style="color:red">1</span></b>}<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="font-family:&quot;Century Gothic&quot;;
+mso-ansi-language:FR" lang="FR"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="font-family:&quot;Century Gothic&quot;;
+mso-ansi-language:FR" lang="FR"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><!--[if gte vml 1]><v:group id="_x0000_s1071" style='position:absolute;
+ margin-left:45pt;margin-top:1.55pt;width:153pt;height:135pt;z-index:4'
+ coordorigin="1057,7897" coordsize="3060,2700">
+ <v:rect id="_x0000_s1072" style='position:absolute;left:2137;top:7897;width:360;
+  height:360' fillcolor="yellow">
+  <v:textbox>
+   <![if !mso]>
+   <table cellpadding=0 cellspacing=0 width="100%">
+    <tr>
+     <td><![endif]>
+     <div>
+     <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;mso-ansi-language:
+     EN-US'>1<o:p></o:p></span></p>
+     </div>
+     <![if !mso]></td>
+    </tr>
+   </table>
+   <![endif]></v:textbox>
+ </v:rect><v:rect id="_x0000_s1073" style='position:absolute;left:3757;top:8797;
+  width:360;height:360' fillcolor="yellow">
+  <v:textbox>
+   <![if !mso]>
+   <table cellpadding=0 cellspacing=0 width="100%">
+    <tr>
+     <td><![endif]>
+     <div>
+     <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;mso-ansi-language:
+     EN-US'>2<o:p></o:p></span></p>
+     </div>
+     <![if !mso]></td>
+    </tr>
+   </table>
+   <![endif]></v:textbox>
+ </v:rect><v:rect id="_x0000_s1074" style='position:absolute;left:1057;top:8617;
+  width:360;height:360' fillcolor="#f9c">
+  <v:textbox>
+   <![if !mso]>
+   <table cellpadding=0 cellspacing=0 width="100%">
+    <tr>
+     <td><![endif]>
+     <div>
+     <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;mso-ansi-language:
+     EN-US'>5<o:p></o:p></span></p>
+     </div>
+     <![if !mso]></td>
+    </tr>
+   </table>
+   <![endif]></v:textbox>
+ </v:rect><v:rect id="_x0000_s1075" style='position:absolute;left:2137;top:10237;
+  width:360;height:360' fillcolor="yellow">
+  <v:textbox>
+   <![if !mso]>
+   <table cellpadding=0 cellspacing=0 width="100%">
+    <tr>
+     <td><![endif]>
+     <div>
+     <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-ansi-language:
+     EN-US'>4<o:p></o:p></span></p>
+     </div>
+     <![if !mso]></td>
+    </tr>
+   </table>
+   <![endif]></v:textbox>
+ </v:rect><v:rect id="_x0000_s1076" style='position:absolute;left:3577;top:10237;
+  width:360;height:360'>
+  <v:textbox>
+   <![if !mso]>
+   <table cellpadding=0 cellspacing=0 width="100%">
+    <tr>
+     <td><![endif]>
+     <div>
+     <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;mso-ansi-language:
+     EN-US'>3<o:p></o:p></span></p>
+     </div>
+     <![if !mso]></td>
+    </tr>
+   </table>
+   <![endif]></v:textbox>
+ </v:rect><v:line id="_x0000_s1077" style='position:absolute;flip:y' from="1237,8077"
+  to="2137,8617" strokecolor="fuchsia" strokeweight="2.25pt"/>
+ <v:line id="_x0000_s1078" style='position:absolute' from="2497,8077" to="3937,8797"
+  strokecolor="fuchsia" strokeweight="2.25pt"/>
+ <v:line id="_x0000_s1079" style='position:absolute' from="1417,8797" to="3757,8977"/>
+ <v:line id="_x0000_s1080" style='position:absolute' from="1237,8977" to="2137,10417"
+  strokeweight=".25pt"/>
+ <v:line id="_x0000_s1081" style='position:absolute' from="2497,10417" to="3577,10417"/>
+ <v:line id="_x0000_s1082" style='position:absolute;flip:x' from="3757,9157"
+  to="3937,10237"/>
+ <v:line id="_x0000_s1083" style='position:absolute' from="2317,8257" to="2317,10237"/>
+ <v:line id="_x0000_s1084" style='position:absolute;flip:x' from="2497,9157"
+  to="3757,10237" strokecolor="fuchsia" strokeweight="2.25pt"/>
+</v:group><![endif]--><!--[if !vml]--><span style="mso-ignore:vglayout;position:
+absolute;z-index:4;margin-left:59px;margin-top:1px;width:210px;height:186px"><img src="algoritm%20prim_files/image004.gif" v:shapes="_x0000_s1071 _x0000_s1072 _x0000_s1073 _x0000_s1074 _x0000_s1075 _x0000_s1076 _x0000_s1077 _x0000_s1078 _x0000_s1079 _x0000_s1080 _x0000_s1081 _x0000_s1082 _x0000_s1083 _x0000_s1084" height="186" width="210"></span><!--[endif]--><span style="font-family:&quot;Century Gothic&quot;;mso-ansi-language:FR" lang="FR"><span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ </span><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-left:88.5pt;text-indent:-18.0pt;mso-list:l7 level1 lfo13;
+tab-stops:list 88.5pt"><!--[if !supportLists]--><span style="font-family:
+&quot;Century Gothic&quot;;mso-fareast-font-family:&quot;Century Gothic&quot;;mso-bidi-font-family:
+&quot;Century Gothic&quot;;mso-ansi-language:FR" lang="FR"><span style="mso-list:Ignore">3<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><!--[endif]--><span style="font-family:&quot;Century Gothic&quot;;
+mso-ansi-language:FR" lang="FR"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>2<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="font-family:&quot;Century Gothic&quot;;
+mso-ansi-language:FR" lang="FR"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal" style="margin-left:141.6pt"><span style="font-family:
+&quot;Century Gothic&quot;;mso-ansi-language:FR" lang="FR">5<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:FR" lang="FR"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:FR" lang="FR"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:FR" lang="FR"><span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ </span><span style="mso-spacerun:yes">&nbsp;&nbsp; </span>4<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="mso-spacerun:yes">&nbsp; </span>2<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="mso-spacerun:yes">&nbsp; </span>1<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span>7<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:FR" lang="FR"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:FR" lang="FR"><span style="mso-tab-count:4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ </span><span style="mso-spacerun:yes">&nbsp; </span>4<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:FR" lang="FR"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><b style="mso-bidi-font-weight:normal"><span style="mso-ansi-language:EN-US" lang="EN-US">Pas 4<o:p></o:p></span></b></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">Nod=3<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">Muchia de
+cost minim (4,3), min=4, cost=10<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">S={0 0 <b style="mso-bidi-font-weight:normal"><span style="color:red">0 </span></b>0 0}<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">T={0 1 <b style="mso-bidi-font-weight:normal"><span style="color:red">4 </span></b>2 1}<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="font-family:&quot;Century Gothic&quot;;
+mso-ansi-language:FR" lang="FR"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><!--[if gte vml 1]><v:group id="_x0000_s1085" style='position:absolute;
+ margin-left:45pt;margin-top:5.3pt;width:153pt;height:135pt;z-index:5'
+ coordorigin="1057,7897" coordsize="3060,2700">
+ <v:rect id="_x0000_s1086" style='position:absolute;left:2137;top:7897;width:360;
+  height:360' fillcolor="yellow">
+  <v:textbox>
+   <![if !mso]>
+   <table cellpadding=0 cellspacing=0 width="100%">
+    <tr>
+     <td><![endif]>
+     <div>
+     <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;mso-ansi-language:
+     EN-US'>1<o:p></o:p></span></p>
+     </div>
+     <![if !mso]></td>
+    </tr>
+   </table>
+   <![endif]></v:textbox>
+ </v:rect><v:rect id="_x0000_s1087" style='position:absolute;left:3757;top:8797;
+  width:360;height:360' fillcolor="yellow">
+  <v:textbox>
+   <![if !mso]>
+   <table cellpadding=0 cellspacing=0 width="100%">
+    <tr>
+     <td><![endif]>
+     <div>
+     <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;mso-ansi-language:
+     EN-US'>2<o:p></o:p></span></p>
+     </div>
+     <![if !mso]></td>
+    </tr>
+   </table>
+   <![endif]></v:textbox>
+ </v:rect><v:rect id="_x0000_s1088" style='position:absolute;left:1057;top:8617;
+  width:360;height:360' fillcolor="yellow">
+  <v:textbox>
+   <![if !mso]>
+   <table cellpadding=0 cellspacing=0 width="100%">
+    <tr>
+     <td><![endif]>
+     <div>
+     <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;mso-ansi-language:
+     EN-US'>5<o:p></o:p></span></p>
+     </div>
+     <![if !mso]></td>
+    </tr>
+   </table>
+   <![endif]></v:textbox>
+ </v:rect><v:rect id="_x0000_s1089" style='position:absolute;left:2137;top:10237;
+  width:360;height:360' fillcolor="yellow">
+  <v:textbox>
+   <![if !mso]>
+   <table cellpadding=0 cellspacing=0 width="100%">
+    <tr>
+     <td><![endif]>
+     <div>
+     <p class=MsoNormal><span lang=EN-US style='font-size:8.0pt;mso-ansi-language:
+     EN-US'>4<o:p></o:p></span></p>
+     </div>
+     <![if !mso]></td>
+    </tr>
+   </table>
+   <![endif]></v:textbox>
+ </v:rect><v:rect id="_x0000_s1090" style='position:absolute;left:3577;top:10237;
+  width:360;height:360' fillcolor="#f9c">
+  <v:textbox>
+   <![if !mso]>
+   <table cellpadding=0 cellspacing=0 width="100%">
+    <tr>
+     <td><![endif]>
+     <div>
+     <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;mso-ansi-language:
+     EN-US'>3<o:p></o:p></span></p>
+     </div>
+     <![if !mso]></td>
+    </tr>
+   </table>
+   <![endif]></v:textbox>
+ </v:rect><v:line id="_x0000_s1091" style='position:absolute;flip:y' from="1237,8077"
+  to="2137,8617" strokecolor="fuchsia" strokeweight="2.25pt"/>
+ <v:line id="_x0000_s1092" style='position:absolute' from="2497,8077" to="3937,8797"
+  strokecolor="fuchsia" strokeweight="2.25pt"/>
+ <v:line id="_x0000_s1093" style='position:absolute' from="1417,8797" to="3757,8977"/>
+ <v:line id="_x0000_s1094" style='position:absolute' from="1237,8977" to="2137,10417"
+  strokeweight=".25pt"/>
+ <v:line id="_x0000_s1095" style='position:absolute' from="2497,10417" to="3577,10417"
+  strokecolor="fuchsia" strokeweight="2.25pt"/>
+ <v:line id="_x0000_s1096" style='position:absolute;flip:x' from="3757,9157"
+  to="3937,10237"/>
+ <v:line id="_x0000_s1097" style='position:absolute' from="2317,8257" to="2317,10237"/>
+ <v:line id="_x0000_s1098" style='position:absolute;flip:x' from="2497,9157"
+  to="3757,10237" strokecolor="fuchsia" strokeweight="2.25pt"/>
+</v:group><![endif]--><!--[if !vml]--><span style="mso-ignore:vglayout;position:
+absolute;z-index:5;margin-left:59px;margin-top:6px;width:210px;height:186px"><img src="algoritm%20prim_files/image005.gif" v:shapes="_x0000_s1085 _x0000_s1086 _x0000_s1087 _x0000_s1088 _x0000_s1089 _x0000_s1090 _x0000_s1091 _x0000_s1092 _x0000_s1093 _x0000_s1094 _x0000_s1095 _x0000_s1096 _x0000_s1097 _x0000_s1098" height="186" width="210"></span><!--[endif]--><span style="font-family:&quot;Century Gothic&quot;;mso-ansi-language:FR" lang="FR"><span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ </span><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-left:88.5pt;text-indent:-18.0pt;mso-list:l7 level1 lfo13;
+tab-stops:list 88.5pt"><!--[if !supportLists]--><span style="font-family:
+&quot;Century Gothic&quot;;mso-fareast-font-family:&quot;Century Gothic&quot;;mso-bidi-font-family:
+&quot;Century Gothic&quot;;mso-ansi-language:FR" lang="FR"><span style="mso-list:Ignore">4<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><!--[endif]--><span style="font-family:&quot;Century Gothic&quot;;
+mso-ansi-language:FR" lang="FR"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>2<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="font-family:&quot;Century Gothic&quot;;
+mso-ansi-language:FR" lang="FR"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal" style="margin-left:141.6pt"><span style="font-family:
+&quot;Century Gothic&quot;;mso-ansi-language:FR" lang="FR">5<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:FR" lang="FR"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:FR" lang="FR"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:FR" lang="FR"><span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ </span><span style="mso-spacerun:yes">&nbsp;&nbsp; </span>4<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="mso-spacerun:yes">&nbsp; </span>2<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="mso-spacerun:yes">&nbsp; </span>1<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp; </span>7<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:FR" lang="FR"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:FR" lang="FR"><span style="mso-tab-count:4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ </span><span style="mso-spacerun:yes">&nbsp; </span>4<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:FR" lang="FR"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">O solutie
+de implementare:<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">#include&lt;fstream.h&gt;<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">#include&lt;values.h&gt;<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">#include&lt;conio.h&gt;<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">int
+n,m,v,s[20],t[20];<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">long int
+a[20][20],min;<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">const long
+int infinit=MAXLONG;<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">void
+citire()<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">{int
+i,j,x,y,z;<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">fstream f;<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">f.open("arbminim.txt",ios::in);<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><span style="mso-spacerun:yes">&nbsp;</span>if(f)<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp; </span>cout&lt;&lt;"ok"&lt;&lt;endl;<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><span style="mso-spacerun:yes">&nbsp;</span>else cout&lt;&lt;"error!!";<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><span style="mso-spacerun:yes">&nbsp;</span>f&gt;&gt;n&gt;&gt;m;<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><span style="mso-spacerun:yes">&nbsp;</span>for(i=1;i&lt;=n;i++)<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp; </span>for(j=1;j&lt;=n;j++)<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp; </span>{if(i==j)<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>a[i][j]=0;<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>else<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="mso-spacerun:yes">&nbsp;</span>a[i][j]=infinit;<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>}<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">for(i=1;i&lt;=m;i++)<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><span style="mso-spacerun:yes">&nbsp;</span>{f&gt;&gt;x&gt;&gt;y&gt;&gt;z;<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><span style="mso-spacerun:yes">&nbsp; </span>a[x][y]=a[y][x]=z;}<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:FR" lang="FR">}<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:FR" lang="FR"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:FR" lang="FR"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:FR" lang="FR">int cauta_nod(int
+&amp;nod)<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:FR" lang="FR">{ min=infinit;<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:FR" lang="FR"><span style="mso-spacerun:yes">&nbsp; </span></span><span style="mso-ansi-language:
+EN-US" lang="EN-US">for(int i=1;i&lt;=n;i++)<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp; </span>if(s[i]!=0)<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp; </span>if(a[i][s[i]]&lt;min)<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>{min=a[i][s[i]];<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="mso-spacerun:yes">&nbsp;</span>nod=i;}<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">return min;<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">}<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">void
+actualizeaza(int nod)<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">{for(int
+i=1;i&lt;=n;i++)<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp; </span>if(s[i])<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>if(a[i][s[i]]&gt;a[i][nod])<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="mso-spacerun:yes">&nbsp;&nbsp;
+</span>s[i]=nod;<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">}<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">void main()<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">{ int
+k,i,j,cost=0;<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><span style="mso-spacerun:yes">&nbsp; </span></span><span style="mso-ansi-language:
+FR" lang="FR">clrscr();<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:FR" lang="FR">citire();<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:FR" lang="FR">cout&lt;&lt;"nodul
+de inceput ";<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">cin&gt;&gt;v;<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">s[v]=0;<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">for(i=1;i&lt;=n;i++)<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><span style="mso-spacerun:yes">&nbsp; </span>if(i!=v)<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp; </span>s[i]=v;<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">int nod;<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">for(k=1;k&lt;=n-1;k++)<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp; </span>{min=cauta_nod(nod);<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp; </span>t[nod]=s[nod];<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp; </span>cost=cost+min;<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp; </span>s[nod]=0;<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp; </span>actualizeaza(nod);<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><span style="mso-spacerun:yes">&nbsp;&nbsp; </span>}<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">cout&lt;&lt;"costul
+este "&lt;&lt;cost&lt;&lt;endl;<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:FR" lang="FR">cout&lt;&lt;"arborele
+de cost minimal ";<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US">for(i=1;i&lt;=n;i++)<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><span style="mso-spacerun:yes">&nbsp; </span>cout&lt;&lt;t[i]&lt;&lt;" ";<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:EN-US" lang="EN-US"><span style="mso-spacerun:yes">&nbsp;</span></span><span style="mso-ansi-language:
+FR" lang="FR">getch();<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:FR" lang="FR">}<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:FR" lang="FR"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><b style="mso-bidi-font-weight:normal"><span style="mso-ansi-language:FR" lang="FR">Probleme propuse<o:p></o:p></span></b></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:FR" lang="FR">La construirea
+unui nou oras intr cele n puncte comerciale sunt stabilite initial m drumuri de
+acces intre perechi de puncte. </span><span style="mso-ansi-language:
+IT" lang="IT">Pentru fiecare dintre cele m perechi se cunoaste costul constructiei
+drumului. Dupa o analiza a hartii s-a observat ca unele zone au ramas izolate
+de altele si specialistii au ajuns la urmatoarea concluzie&nbsp;: sa se elimine
+o parte din drumurile alese anterior dar sa se adauge drumuri noi de cost z
+astfel incat sa se obtina o retea noua de drumuri pentru care costul total al
+constructiei drumurilor sa fie minim si sa existe traseu de acces intre oricare
+doua puncte comerciale&nbsp;. Sa se afiseze valoarea constructiei si un traseu
+de la punctul comercial p la punctul 1.<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:IT" lang="IT"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:IT" lang="IT">Ex&nbsp;:<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:IT" lang="IT">12<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:IT" lang="IT">12<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:IT" lang="IT">1 4 7<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:IT" lang="IT">4 5 10<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:IT" lang="IT">5 2 9<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:IT" lang="IT">2 1 8<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:IT" lang="IT">3 8 11<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:IT" lang="IT">8 7 14<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:IT" lang="IT">7 6 13<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:IT" lang="IT">3 6 12<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:IT" lang="IT">9 10 5<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:IT" lang="IT">10 11 6<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:IT" lang="IT">11 12 7<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:IT" lang="IT">9 12 8<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:IT" lang="IT"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:IT" lang="IT">Z=100<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:IT" lang="IT"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:IT" lang="IT">Se afiseaza
+costul 278<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:ES-TRAD" lang="ES-TRAD">Traseul
+de la 1<span style="mso-spacerun:yes">&nbsp; </span>la 12 este&nbsp;:<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:FR" lang="FR">1 8 12<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:FR" lang="FR"><span style="mso-spacerun:yes">&nbsp;</span><br style="mso-special-character:line-break">
+<!--[if !supportLineBreakNewLine]--><br style="mso-special-character:line-break">
+<!--[endif]--><o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:FR" lang="FR"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal" style="margin-left:18.0pt"><span style="mso-ansi-language:
+FR" lang="FR"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:FR" lang="FR"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span style="mso-ansi-language:FR" lang="FR"><o:p>&nbsp;</o:p></span></p>
+
+</div>
+
+
+
+</body></html>

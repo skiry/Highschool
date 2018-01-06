@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1449396910 source:d:\downloads\!info\strt spt3 oji15 11-12\infinitepatternmatching\main.cpp
+	<fstream>
+	<cstring>
+	<cstdlib>
+

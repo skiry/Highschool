@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1490004515 source:d:\lucruri\!info\clasa a 12a\evaluare\main.cpp
+	<fstream>
+	<queue>
+	<string.h>
+

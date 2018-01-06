@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1490449119 source:d:\lucruri\!info\clasa a 12a\cmlsc\main.cpp
+	<fstream>
+	<vector>
+	<cstdio>
+

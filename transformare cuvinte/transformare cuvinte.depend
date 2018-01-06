@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1487785287 source:d:\lucruri\!info\clasa a 12a\transformare cuvinte\main.cpp
+	<fstream>
+	<string.h>
+

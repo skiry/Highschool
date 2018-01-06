@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1483980976 source:d:\lucruri\!info\clasa a 12a\vladik chat\main.cpp
+	<fstream>
+	<string.h>
+

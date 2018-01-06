@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1487781383 source:d:\lucruri\!info\clasa a 12a\lant\main.cpp
+	<fstream>
+	<string.h>
+	<algorithm>
+

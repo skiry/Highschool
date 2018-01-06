@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1389030135 source:d:\codeblocks projects#ionutz\1\char\main.cpp
+	<iostream>
+	<string>
+
+1389030135 source:d:\codeblocks projects#ionutz\ex1-char\char\main.cpp
+	<iostream>
+	<string>
+

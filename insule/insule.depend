@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1393245481 source:d:\codeblocks projects#ionutz\insule\main.cpp
+	<fstream>
+	<iostream>
+	<iomanip>
+

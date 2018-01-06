@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1455995265 source:d:\downloads\!info\strt spt3 oji15 11-12\blis\main.cpp
+	<fstream>
+	<string.h>
+	<stdlib.h>
+

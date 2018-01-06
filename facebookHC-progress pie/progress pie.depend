@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1483912506 source:d:\lucruri\!info\clasa a 12a\progress pie\main.cpp
+	<fstream>
+	<math.h>
+

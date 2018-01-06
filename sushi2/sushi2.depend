@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1490132141 source:d:\lucruri\!info\clasa a 12a\sushi2\main.cpp
+	<fstream>
+	<vector>
+	<queue>
+

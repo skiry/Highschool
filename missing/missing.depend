@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1490453366 source:d:\lucruri\!info\clasa a 12a\missing\main.cpp
+	<fstream>
+	<string.h>
+	<vector>
+	<deque>
+	<algorithm>
+

@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1475339760 source:d:\downloads\!info\clasa a 12a\verse pattern\main.cpp
+	<fstream>
+	<string.h>
+

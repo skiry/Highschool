@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1447494368 source:d:\downloads\!info\strt spt3 oji15 11-12\joc\main.cpp
+	<iostream>
+	<windows.h>
+	<ctime>
+

@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1486048349 source:d:\lucruri\!info\clasa a 12a\codeforces-764-c\main.cpp
+	<fstream>
+	<vector>
+	<algorithm>
+

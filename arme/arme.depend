@@ -1,0 +1,4 @@
+# depslib dependency file v1.0
+1390985230 source:d:\codeblocks projects#ionutz\arme\main.cpp
+	<fstream>
+

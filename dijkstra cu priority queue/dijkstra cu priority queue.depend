@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1490830483 source:d:\lucruri\!info\clasa a 12a\dijkstra cu priority queue\main.cpp
+	<fstream>
+	<vector>
+	<queue>
+

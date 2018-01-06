@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1460248339 source:d:\downloads\!info\strt spt3 oji15 11-12\coinjam\main.cpp
+	<fstream>
+	<stdlib.h>
+	<math.h>
+	<iomanip>
+

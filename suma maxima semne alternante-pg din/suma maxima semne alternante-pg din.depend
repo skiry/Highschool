@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1485018083 source:d:\lucruri\!info\clasa a 12a\suma maxima semne alternante-pg din\main.cpp
+	<fstream>
+	<algorithm>
+

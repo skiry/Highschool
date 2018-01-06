@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1485285980 source:d:\lucruri\!info\clasa a 12a\gravity\main.cpp
+	<fstream>
+	<string.h>
+

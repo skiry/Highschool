@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1445952869 source:d:\downloads\!info\strt spt3 oji15 11-12\matrix\main.cpp
+	<iostream>
+	<stdlib.h>
+	<time.h>
+

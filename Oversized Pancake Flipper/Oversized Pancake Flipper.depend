@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1491649152 source:d:\lucruri\!info\clasa a 12a\oversized pancake flipper\main.cpp
+	<fstream>
+	<string.h>
+

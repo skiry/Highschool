@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1488915801 source:d:\lucruri\!info\clasa a 12a\spiridusi\main.cpp
+	<fstream>
+	<vector>
+	<queue>
+

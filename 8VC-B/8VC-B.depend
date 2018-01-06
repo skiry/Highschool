@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1484502285 source:d:\lucruri\!info\clasa a 12a\8vc-b\main.cpp
+	<fstream>
+	<string.h>
+
